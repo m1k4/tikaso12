@@ -1,0 +1,31 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ehdotus</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h2>Ehdotus</h2>
+        <p> Anna ehdotettavan leffan tiedot: </p>
+        <fieldset>
+            <form action="ehdotus.html" method="POST">
+                <label>Leffan nimi: <input type="text" name="nimi" id="nimi"/></label> <br>
+                <label>Ohjaaja: <input type="text" name="ohjaaja" id="ohjaaja" /></label> <br>
+                <label>Valmistusmisvuosi: <input type="text" name="vuosi" id="vuosi"/></label> <br>
+                <label>Genre: <select>
+                        <option value="kauhu">kauhu</option>
+                        <option value="scifi">scifi</option>
+                        <option value="jännitys">jännitys</option>
+                        <option value="toiminta">toiminta</option>
+                        <option value="fantasia">fantasia</option>
+                    </select> </label> <br>
+                <input type="submit" value="Ehdota"/>
+            </form>
+        </fieldset>
+        <p><a href="kirjautuminen.html">Takaisin</a></p>
+    </body>
+</html>
