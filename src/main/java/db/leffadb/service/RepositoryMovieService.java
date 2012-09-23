@@ -45,7 +45,7 @@ public class RepositoryMovieService implements MovieService {
     @Transactional
     public void remove(Long movieId) {
         Movie movie = movieRepository.findOne(movieId);
-        for (User user : movie.getusers()) {
+        for (User user : movie.getUsers()) {
             user.getMovies().remove(movie);
         }
  
@@ -57,5 +57,10 @@ public class RepositoryMovieService implements MovieService {
     public Iterable<Movie> listMoviesWithout(Long userId) {
         User user = userRepository.findOne(userId);
         return movieRepository.findMoviesWithoutUser(user);
+    }
+
+    @Override
+    public Movie findById(Long id) {
+        return movieRepository.findOne(id);
     }
 }

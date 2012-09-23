@@ -12,9 +12,8 @@
         <a href="app/yllapito">Ylläpito</a><br/>
         <br>
         <fieldset>
+            <legend>Kirjaudu sisään</legend>
             <form action="app/login" method="POST">
-
-                <legend>Kirjaudu sisään</legend>
                 <label for="tunnus">Käyttäjätunnus:</label>
                 <input type="text" name="name" id="name" />
                 <label for="salasana">Salasana:</label>
@@ -22,7 +21,21 @@
                 <input type="submit" value="Kirjaudu" />
 
             </form>
+            <br>
             <a href="app/rekisteroityminen">Rekisteröityminen</a><br/>
+        </fieldset>
+        
+        <br>
+        
+        <fieldset>
+            <legend>Leffahaku</legend>
+            
+        </fieldset>
+        
+        <br>
+        
+        <fieldset>
+            <legend>Hakutulokset</legend>
         </fieldset>
 
     </body>

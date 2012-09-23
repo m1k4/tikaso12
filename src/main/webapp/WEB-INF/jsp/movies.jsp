@@ -9,7 +9,8 @@
     <body>
         <h1>Leffojen hallinta</h1>
 
-        <p><a id="logout" href="${pageContext.request.contextPath}/index.jsp">Kirjaudu ulos</a></p>
+        <p><a id="logout" href="${pageContext.request.contextPath}/index.jsp">Kirjaudu ulos</a></p> <br/>
+        <p><a id="back" href="${pageContext.request.contextPath}/app/yllapito">Takaisin</a></p>
 
         <h2>Lisää uusi leffa</h2>
 
@@ -25,7 +26,7 @@
 
         <ol>
             <c:forEach var="movie" items="${movies}">
-                <li>${movie.name}
+                <li><a href="${movie.id}">${movie.name}</a>
                     <form method="POST" action="${pageContext.request.contextPath}/app/movie/${movie.id}/delete">
                         <input type="submit" value="Poista" id="remove-${movie.id}"/>
                     </form><br/>

@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>User: ${user.name}</h1>
-        
+
         <p><a id="logout" href="${pageContext.request.contextPath}/index.jsp">Kirjaudu ulos</a></p>
 
         <h2>Katsotut leffat</h2>
@@ -16,8 +16,8 @@
         <div>
             <ul>
                 <c:forEach var="movie" items="${user.movies}">
-                    <li>${movie.name}</li>
-                </c:forEach>
+                    <li><a href="${pageContext.request.contextPath}/app/movie/${movie.id}">${movie.name}</a>
+                    </c:forEach>
             </ul>
         </div>
 

@@ -20,24 +20,30 @@ import db.leffadb.service.MovieService;
 @Controller
 @RequestMapping("movie")
 public class MovieController {
- 
+
     @Autowired
     private MovieService movieService;
- 
-    @RequestMapping(value= {"/", ""}, method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("movies", movieService.list());
         return "movies";
     }
- 
-    @RequestMapping(value= {"/", ""}, method = RequestMethod.POST)
+
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public String add(@RequestParam String name) {
         movieService.add(name);
         return "redirect:/app/movie/";
     }
- 
+
+    @RequestMapping("{movieId}")
+    public String view(Model model, @PathVariable(value = "movieId") Long movieId) {
+        model.addAttribute("movie", movieService.findById(movieId));
+        return "movie";
+    }
+
     @RequestMapping(value = "{movieId}/delete", method = RequestMethod.POST)
-    public String delete(@PathVariable(value="movieId") Long movieId) {
+    public String delete(@PathVariable(value = "movieId") Long movieId) {
         movieService.remove(movieId);
         return "redirect:/app/movie/";
     }

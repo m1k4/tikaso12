@@ -10,8 +10,8 @@
 
         <h1>Käyttäjien hallinta</h1>
 
-        <p><a id="logout" href="${pageContext.request.contextPath}/index.jsp">Kirjaudu ulos</a></p>
-
+        <p><a id="logout" href="${pageContext.request.contextPath}/index.jsp">Kirjaudu ulos</a></p> <br>
+        <p><a id="back" href="${pageContext.request.contextPath}/app/yllapito">Takaisin</a></p>
         
         <h2>Nykyiset käyttäjät</h2>
         <ol>

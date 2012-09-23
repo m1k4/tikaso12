@@ -5,7 +5,6 @@
 package db.leffadb.repository;
 
 import db.leffadb.domain.User;
-import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**

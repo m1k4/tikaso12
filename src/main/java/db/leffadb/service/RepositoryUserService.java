@@ -4,11 +4,10 @@
  */
 package db.leffadb.service;
 
-import db.leffadb.domain.User;
 import db.leffadb.domain.Movie;
-import db.leffadb.repository.UserRepository;
+import db.leffadb.domain.User;
 import db.leffadb.repository.MovieRepository;
-import java.util.List;
+import db.leffadb.repository.UserRepository;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +49,7 @@ public class RepositoryUserService implements UserService {
     public void remove(Long userId) {
         User user = userRepository.findOne(userId);
         for (Movie movie : user.getMovies()) {
-            movie.getusers().remove(user);
+            movie.getUsers().remove(user);
         }
  
         userRepository.delete(userId);
@@ -63,7 +62,7 @@ public class RepositoryUserService implements UserService {
         Movie movie = movieRepository.findOne(movieId);
  
         user.getMovies().add(movie);
-        movie.getusers().add(user);
+        movie.getUsers().add(user);
     }
  
     @Override

@@ -19,7 +19,7 @@ import javax.persistence.ManyToMany;
  */
 @Entity(name = "MOVIE")
 public class Movie implements Serializable {
- 
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "ID")
@@ -28,38 +28,68 @@ public class Movie implements Serializable {
     private String name;
     @Column(name = "LENGTH_IN_MINUTES")
     private Integer lengthInMinutes;
+    @Column(name = "OHJAAJA")
+    private String ohjaaja;
+    @Column(name = "GENRE")
+    private String genre;
+    @Column(name = "VUOSI")
+    private int vuosi;
     @ManyToMany
     private List<User> users;
- 
+
     public Long getId() {
         return id;
     }
- 
+
     public void setId(Long id) {
         this.id = id;
     }
- 
+
     public String getName() {
         return name;
     }
- 
+
     public void setName(String name) {
         this.name = name;
     }
- 
+
     public Integer getLengthInMinutes() {
         return lengthInMinutes;
     }
- 
+
     public void setLengthInMinutes(Integer lengthInMinutes) {
         this.lengthInMinutes = lengthInMinutes;
     }
- 
-    public List<User> getusers() {
+
+    public String getOhjaaja() {
+        return ohjaaja;
+    }
+
+    public void setOhjaaja(String ohjaaja) {
+        this.ohjaaja = ohjaaja;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public int getVuosi() {
+        return vuosi;
+    }
+
+    public void setVuosi(int vuosi) {
+        this.vuosi = vuosi;
+    }
+
+    public List<User> getUsers() {
         return users;
     }
- 
-    public void setusers(List<User> users) {
+
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }
