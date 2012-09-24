@@ -27,6 +27,12 @@ public class MovieController {
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("movies", movieService.list());
+        return "moviemanagement";
+    }
+    
+    @RequestMapping(value = "movies", method = RequestMethod.GET)
+    public String listAllMovies(Model model) {
+        model.addAttribute("movies", movieService.list());
         return "movies";
     }
 
@@ -37,13 +43,13 @@ public class MovieController {
     }
 
     @RequestMapping("{movieId}/muokkaa")
-    public String viewUpdate(Model model, @PathVariable(value = "movieId") Long movieId) {
+    public String viewUpdatePage(Model model, @PathVariable(value = "movieId") Long movieId) {
         model.addAttribute("movie", movieService.findById(movieId));
         return "leffanmuokkaus";
     }
 
     @RequestMapping("{movieId}")
-    public String view(Model model, @PathVariable(value = "movieId") Long movieId) {
+    public String viewMoviePage(Model model, @PathVariable(value = "movieId") Long movieId) {
         model.addAttribute("movie", movieService.findById(movieId));
         return "movie";
     }

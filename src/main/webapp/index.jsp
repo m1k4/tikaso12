@@ -24,18 +24,22 @@
             <br>
             <a href="app/rekisteroityminen">Rekisteröityminen</a><br/>
         </fieldset>
-        
+
         <br>
-        
+
         <fieldset>
             <legend>Leffahaku</legend>
-            
+
         </fieldset>
-        
+
         <br>
-        
+
         <fieldset>
             <legend>Hakutulokset</legend>
+
+            <form action="app/movie/movies" method="GET">
+                <input type="submit" value="Kaikki leffat" />
+            </form>
         </fieldset>
 
     </body>

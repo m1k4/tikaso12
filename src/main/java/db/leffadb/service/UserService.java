@@ -15,5 +15,7 @@ public interface UserService {
     Long add(String name, String password); 
     void remove(Long userId);
     User findById(Long userId);
+    User findByName(String name);
     void adduserToMovie(Long userId, Long movieId);
+    boolean checkLogin(String name, String password);
 }

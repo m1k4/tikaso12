@@ -6,6 +6,7 @@ package db.leffadb.controller;
 
 import db.leffadb.service.MovieService;
 import db.leffadb.service.UserService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +25,9 @@ public class UserController {
     private MovieService movieService;
  
     @RequestMapping(value= {"/", ""}, method = RequestMethod.GET)
-    public String list(Model model) {
+    public String listUsers(Model model) {
         model.addAttribute("users", userService.list());
-        return "users";
+        return "usermanagement";
     }
  
     @RequestMapping(value= {"/", ""}, method = RequestMethod.POST)
@@ -37,7 +38,14 @@ public class UserController {
     }
  
     @RequestMapping("{userId}")
-    public String view(Model model, @PathVariable(value = "userId") Long userId) {
+    public String viewUserPage(Model model, @PathVariable(value = "userId") Long userId, HttpSession session) {
+        String name = (String) session.getAttribute("name");
+        String password = (String) session.getAttribute("password");
+        
+        if (!userService.checkLogin(name, password)) {
+            return "redirect:/";
+        }
+        
         model.addAttribute("user", userService.findById(userId));
         model.addAttribute("movies", movieService.listMoviesWithout(userId));
         return "user";

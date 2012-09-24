@@ -15,7 +15,7 @@
     <body>
         <h1>Leffa: ${movie.name}</h1>
 
-        <p><a id="logout" href="${pageContext.request.contextPath}/index.jsp">Kirjaudu ulos</a></p>
+        <p><a id="logout" href="${pageContext.request.contextPath}/app/logout">Kirjaudu ulos</a></p>
 
         <fieldset>
             Ohjaaja: ${movie.ohjaaja} <br>
