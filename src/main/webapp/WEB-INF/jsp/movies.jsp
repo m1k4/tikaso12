@@ -15,7 +15,7 @@
         <h2>Lisää uusi leffa</h2>
 
         <div>
-            Enter name and and press Submit:<br/>
+            Anna leffan nimi ja paina lisää:<br/>
             <form action="${pageContext.request.contextPath}/app/movie/" method="POST">
                 Name: <input type="text" name="name" id="name"/><br/>
                 <input type="submit" value="Lisää"/>            
@@ -26,7 +26,7 @@
 
         <ol>
             <c:forEach var="movie" items="${movies}">
-                <li><a href="${movie.id}">${movie.name}</a>
+                <li>${movie.name} <a href="${pageContext.request.contextPath}/app/movie/${movie.id}/muokkaa">[Muokkaa]</a>
                     <form method="POST" action="${pageContext.request.contextPath}/app/movie/${movie.id}/delete">
                         <input type="submit" value="Poista" id="remove-${movie.id}"/>
                     </form><br/>

@@ -27,7 +27,7 @@ public class Movie implements Serializable {
     @Column(name = "NAME")
     private String name;
     @Column(name = "LENGTH_IN_MINUTES")
-    private Integer lengthInMinutes;
+    private double lengthInMinutes;
     @Column(name = "OHJAAJA")
     private String ohjaaja;
     @Column(name = "GENRE")
@@ -53,11 +53,11 @@ public class Movie implements Serializable {
         this.name = name;
     }
 
-    public Integer getLengthInMinutes() {
+    public double getLengthInMinutes() {
         return lengthInMinutes;
     }
 
-    public void setLengthInMinutes(Integer lengthInMinutes) {
+    public void setLengthInMinutes(double lengthInMinutes) {
         this.lengthInMinutes = lengthInMinutes;
     }
 

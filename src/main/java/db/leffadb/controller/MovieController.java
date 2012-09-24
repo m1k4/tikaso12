@@ -36,6 +36,12 @@ public class MovieController {
         return "redirect:/app/movie/";
     }
 
+    @RequestMapping("{movieId}/muokkaa")
+    public String viewUpdate(Model model, @PathVariable(value = "movieId") Long movieId) {
+        model.addAttribute("movie", movieService.findById(movieId));
+        return "leffanmuokkaus";
+    }
+
     @RequestMapping("{movieId}")
     public String view(Model model, @PathVariable(value = "movieId") Long movieId) {
         model.addAttribute("movie", movieService.findById(movieId));
@@ -45,6 +51,19 @@ public class MovieController {
     @RequestMapping(value = "{movieId}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable(value = "movieId") Long movieId) {
         movieService.remove(movieId);
+        return "redirect:/app/movie/";
+    }
+
+    @RequestMapping(value = "{movieId}/update", method = RequestMethod.POST)
+    public String update(@PathVariable(value = "movieId") Long movieId,
+            @RequestParam String name, 
+            @RequestParam String ohjaaja, 
+            @RequestParam String genre, 
+            @RequestParam double kesto, 
+            @RequestParam int vuosi) {
+        
+        movieService.update(movieId, name, ohjaaja, genre, vuosi, kesto);
+
         return "redirect:/app/movie/";
     }
 }

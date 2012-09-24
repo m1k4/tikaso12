@@ -63,4 +63,18 @@ public class RepositoryMovieService implements MovieService {
     public Movie findById(Long id) {
         return movieRepository.findOne(id);
     }
+
+    @Override
+    public void update(Long id, String name, String ohjaaja, String genre, int vuosi, double kesto) {
+        Movie movie = findById(id);
+        
+        movie.setName(name);
+        movie.setOhjaaja(ohjaaja);
+        movie.setGenre(genre);
+        movie.setVuosi(vuosi);
+        movie.setLengthInMinutes(kesto);
+        
+        movieRepository.save(movie);
+    }
+
 }

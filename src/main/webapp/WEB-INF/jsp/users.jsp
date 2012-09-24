@@ -16,7 +16,7 @@
         <h2>Nykyiset käyttäjät</h2>
         <ol>
             <c:forEach var="user" items="${users}">
-                <li><a href="${user.id}">${user.name}</a>
+                <li><a>${user.name}</a>
                     <form method="POST" action="${pageContext.request.contextPath}/app/user/${user.id}/delete">
                         <input type="submit" value="Poista" id="remove-${user.id}"/>
                     </form><br/>

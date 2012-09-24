@@ -7,7 +7,7 @@
         <title>${user.name}</title>
     </head>
     <body>
-        <h1>User: ${user.name}</h1>
+        <h1>Käyttäjätunnus: ${user.name}</h1>
 
         <p><a id="logout" href="${pageContext.request.contextPath}/index.jsp">Kirjaudu ulos</a></p>
 
@@ -31,7 +31,7 @@
                             <option value="${movie.id}">${movie.name}</option>
                         </c:forEach>
                     </select>
-                    <input type="submit" value="Assign" id="add-to-movie"/>
+                    <input type="submit" value="Lisää" id="add-to-movie"/>
                 </form>
             </div>
         </c:if>
