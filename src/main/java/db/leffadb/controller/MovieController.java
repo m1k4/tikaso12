@@ -4,6 +4,8 @@
  */
 package db.leffadb.controller;
 
+import db.leffadb.service.MovieService;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import db.leffadb.service.MovieService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -24,12 +26,20 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    @PostConstruct
+    private void init() {
+        movieService.create("Testi1");
+        movieService.create("Testi2");
+        movieService.create("Testi3");
+        
+    }
+
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("movies", movieService.list());
         return "moviemanagement";
     }
-    
+
     @RequestMapping(value = "movies", method = RequestMethod.GET)
     public String listAllMovies(Model model) {
         model.addAttribute("movies", movieService.list());
@@ -62,20 +72,21 @@ public class MovieController {
 
     @RequestMapping(value = "{movieId}/update", method = RequestMethod.POST)
     public String update(@PathVariable(value = "movieId") Long movieId,
-            @RequestParam String name, 
-            @RequestParam String ohjaaja, 
-            @RequestParam String genre, 
-            @RequestParam double kesto, 
+            @RequestParam String name,
+            @RequestParam String ohjaaja,
+            @RequestParam String genre,
+            @RequestParam double kesto,
             @RequestParam int vuosi) {
-        
+
         movieService.update(movieId, name, ohjaaja, genre, vuosi, kesto);
 
         return "redirect:/app/movie/";
     }
-    
+
     @RequestMapping(value = "find", method = RequestMethod.GET)
-    public String find(Model model, @RequestParam String hakusana) {
-        
-        return "";
+    public String find(RedirectAttributes redirectAttributes,
+            @RequestParam String hakusana) {
+        redirectAttributes.addFlashAttribute("movies", movieService.findByName(hakusana));
+        return "redirect:/app/index";
     }
 }

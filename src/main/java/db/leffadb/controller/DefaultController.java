@@ -1,6 +1,5 @@
 package db.leffadb.controller;
 
-import db.leffadb.domain.User;
 import db.leffadb.service.UserService;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,11 @@ public class DefaultController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("index")
+    public String viewIndex() {
+        return "index";
+    }
+    
     @RequestMapping("yllapito")
     public String viewYllapito() {
         return "yllapitomenu";

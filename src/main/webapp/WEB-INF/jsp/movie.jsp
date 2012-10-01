@@ -16,7 +16,7 @@
         <h1>Leffa: ${movie.name}</h1>
 
         <p><a id="logout" href="${pageContext.request.contextPath}/app/logout">Kirjaudu ulos</a></p>
-        <p><a id="back" href="${pageContext.request.contextPath}/">Takaisin</a></p>
+        <p><a id="back" href="${pageContext.request.contextPath}/app/index">Takaisin</a></p>
         <fieldset>
             Ohjaaja: ${movie.ohjaaja} <br>
             Genre: ${movie.genre} <br>

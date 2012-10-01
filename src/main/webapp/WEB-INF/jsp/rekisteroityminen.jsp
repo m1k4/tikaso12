@@ -14,7 +14,7 @@
     <body>
         <h1>Rekisteröityminen</h1>
         
-        <p><a id="back" href="${pageContext.request.contextPath}/index.jsp">Takaisin</a></p>
+        <p><a id="back" href="${pageContext.request.contextPath}/app/index">Takaisin</a></p>
         
         <h2>Luo uusi käyttäjä</h2>
 

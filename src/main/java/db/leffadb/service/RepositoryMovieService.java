@@ -79,4 +79,11 @@ public class RepositoryMovieService implements MovieService {
 
         movieRepository.save(movie);
     }
+
+    @Override
+    public Iterable<Movie> findByName(String name) {
+        return movieRepository.findByName(name);
+    }
+
+
 }
