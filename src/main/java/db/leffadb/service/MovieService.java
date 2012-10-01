@@ -12,9 +12,9 @@ import db.leffadb.domain.Movie;
  */
 public interface MovieService {
     Iterable<Movie> list();
-    void add(String name);
+    void create(String name);
     void update(Long id, String name, String ohjaaja, String genre, int vuosi, double kesto);
     Movie findById(Long id);
-    void remove(Long movieId);
+    void delete(Long movieId);
     Iterable<Movie> listMoviesWithout(Long userId);
 }

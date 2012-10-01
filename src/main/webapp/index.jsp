@@ -29,7 +29,11 @@
 
         <fieldset>
             <legend>Leffahaku</legend>
-
+            <form action="app/movie/find" method="GET">
+                <label for="hakusana">Hakusana:</label>
+                <input type="text" name="hakusana" id="hakusana"/>
+                <input type="submit" value="Hae" />
+            </form>
         </fieldset>
 
         <br>

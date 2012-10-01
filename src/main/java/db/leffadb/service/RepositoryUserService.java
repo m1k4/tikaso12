@@ -8,7 +8,6 @@ import db.leffadb.domain.Movie;
 import db.leffadb.domain.User;
 import db.leffadb.repository.MovieRepository;
 import db.leffadb.repository.UserRepository;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,15 +25,14 @@ public class RepositoryUserService implements UserService {
     private MovieRepository movieRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Iterable<User> list() {
         return userRepository.findAll();
     }
 
     @Override
-    @Transactional
-    public Long add(String name, String password) {
-        name = StringEscapeUtils.escapeHtml4(name);
-
+    @Transactional(readOnly = false)
+    public Long create(String name, String password) {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
@@ -45,8 +43,8 @@ public class RepositoryUserService implements UserService {
     }
 
     @Override
-    @Transactional
-    public void remove(Long userId) {
+    @Transactional(readOnly = false)
+    public void delete(Long userId) {
         User user = userRepository.findOne(userId);
         for (Movie movie : user.getMovies()) {
             movie.getUsers().remove(user);
@@ -56,7 +54,7 @@ public class RepositoryUserService implements UserService {
     }
 
     @Override
-    @Transactional
+        @Transactional(readOnly = false)
     public void adduserToMovie(Long userId, Long movieId) {
         User user = userRepository.findOne(userId);
         Movie movie = movieRepository.findOne(movieId);
@@ -66,11 +64,34 @@ public class RepositoryUserService implements UserService {
     }
 
     @Override
+        @Transactional(readOnly = false)
+    public void removeUserFromMovie(Long userId, Long movieId) {
+        User user = userRepository.findOne(userId);
+        Movie movie = movieRepository.findOne(movieId);
+
+        user.getMovies().remove(movie);
+        movie.getUsers().remove(user);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public User findById(Long userId) {
         return userRepository.findOne(userId);
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public User findByName(String name) {
+        for (User user : list()) {
+            if (user.getName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public boolean checkLogin(String name, String password) {
         for (User user : list()) {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
@@ -80,13 +101,4 @@ public class RepositoryUserService implements UserService {
         return false;
     }
 
-    @Override
-    public User findByName(String name) {
-        for (User user : list()) {
-            if (user.getName().equals(name)) {
-                return user;
-            }
-        }
-        return null;
-    }
 }

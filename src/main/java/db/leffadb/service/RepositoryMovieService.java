@@ -19,39 +19,40 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class RepositoryMovieService implements MovieService {
- 
+
     @Autowired
     private MovieRepository movieRepository;
     @Autowired
     private UserRepository userRepository;
- 
+
     @Override
+    @Transactional(readOnly = true)
     public Iterable<Movie> list() {
         return movieRepository.findAll();
     }
- 
+
     @Override
-    @Transactional
-    public void add(String name) {
+    @Transactional(readOnly = false)
+    public void create(String name) {
         name = StringEscapeUtils.escapeHtml4(name);
-         
+
         Movie movie = new Movie();
         movie.setName(name);
-        
+
         movieRepository.save(movie);
     }
- 
+
     @Override
-    @Transactional
-    public void remove(Long movieId) {
+    @Transactional(readOnly = false)
+    public void delete(Long movieId) {
         Movie movie = movieRepository.findOne(movieId);
         for (User user : movie.getUsers()) {
             user.getMovies().remove(movie);
         }
- 
+
         movieRepository.delete(movie);
     }
- 
+
     @Override
     @Transactional(readOnly = true)
     public Iterable<Movie> listMoviesWithout(Long userId) {
@@ -60,21 +61,22 @@ public class RepositoryMovieService implements MovieService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Movie findById(Long id) {
         return movieRepository.findOne(id);
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void update(Long id, String name, String ohjaaja, String genre, int vuosi, double kesto) {
         Movie movie = findById(id);
-        
+
         movie.setName(name);
         movie.setOhjaaja(ohjaaja);
         movie.setGenre(genre);
         movie.setVuosi(vuosi);
         movie.setLengthInMinutes(kesto);
-        
+
         movieRepository.save(movie);
     }
-
 }

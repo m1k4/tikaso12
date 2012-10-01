@@ -12,10 +12,11 @@ import db.leffadb.domain.User;
  */
 public interface UserService {
     Iterable<User> list();
-    Long add(String name, String password); 
-    void remove(Long userId);
+    Long create(String name, String password);
+    void delete(Long userId);
     User findById(Long userId);
     User findByName(String name);
     void adduserToMovie(Long userId, Long movieId);
+    void removeUserFromMovie(Long userId, Long movieId);
     boolean checkLogin(String name, String password);
 }

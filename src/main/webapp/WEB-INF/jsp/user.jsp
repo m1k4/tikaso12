@@ -17,6 +17,9 @@
             <ul>
                 <c:forEach var="movie" items="${user.movies}">
                     <li><a href="${pageContext.request.contextPath}/app/movie/${movie.id}">${movie.name}</a>
+                        <form method="POST" action="${pageContext.request.contextPath}/app/user/${user.id}/deleteMovie/${movie.id}">
+                            <input type="submit" value="Poista" id="remove-${movie.id}"/>
+                        </form><br/>
                     </c:forEach>
             </ul>
         </div>

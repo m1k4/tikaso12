@@ -37,8 +37,8 @@ public class MovieController {
     }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
-    public String add(@RequestParam String name) {
-        movieService.add(name);
+    public String createMovie(@RequestParam String name) {
+        movieService.create(name);
         return "redirect:/app/movie/";
     }
 
@@ -56,7 +56,7 @@ public class MovieController {
 
     @RequestMapping(value = "{movieId}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable(value = "movieId") Long movieId) {
-        movieService.remove(movieId);
+        movieService.delete(movieId);
         return "redirect:/app/movie/";
     }
 
@@ -71,5 +71,11 @@ public class MovieController {
         movieService.update(movieId, name, ohjaaja, genre, vuosi, kesto);
 
         return "redirect:/app/movie/";
+    }
+    
+    @RequestMapping(value = "find", method = RequestMethod.GET)
+    public String find(Model model, @RequestParam String hakusana) {
+        
+        return "";
     }
 }
