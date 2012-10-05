@@ -34,11 +34,10 @@ public class UserController {
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public String createUser(@RequestParam String name,
             @RequestParam String password, HttpSession session) {
-        String id = userService.create(name, password).toString();
-        session.setAttribute("name", name);
-        session.setAttribute("password", password);
+        User user = userService.create(name, password);
+        session.setAttribute("user", user);
 
-        return "redirect:/app/users/" + id + "";
+        return "redirect:/app/users/" + user.getId();
     }
 
     @RequestMapping("{userId}")

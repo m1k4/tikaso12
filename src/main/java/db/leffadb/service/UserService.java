@@ -12,7 +12,7 @@ import db.leffadb.domain.User;
  */
 public interface UserService {
     Iterable<User> list();
-    Long create(String name, String password);
+    User create(String name, String password);
     void delete(Long userId);
     User findById(Long userId);
     User findByName(String name);

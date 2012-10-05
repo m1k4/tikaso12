@@ -32,14 +32,14 @@ public class RepositoryUserService implements UserService {
 
     @Override
     @Transactional(readOnly = false)
-    public Long create(String name, String password) {
+    public User create(String name, String password) {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
 
         userRepository.save(user);
 
-        return user.getId();
+        return user;
     }
 
     @Override

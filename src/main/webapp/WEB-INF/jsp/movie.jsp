@@ -28,7 +28,10 @@
             Genre: ${movie.genre} <br>
             Valmistumisvuosi: ${movie.vuosi} <br>
             Kesto: ${movie.lengthInMinutes} <br>
-            Arvosana: <c:if test="${not empty rating}">${rating.rating}</c:if>
+            Arvosana: <c:if test="${not empty rating}">
+                ${rating.rating} 
+            </c:if>
+            
             <c:if test="${empty rating}">
                 <form action="${movie.id}/ratings" method="POST">
                       <select id="rating" name="rating">
