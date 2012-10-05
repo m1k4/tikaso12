@@ -4,12 +4,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>${user.name}</title>
     </head>
     <body>
         <h1>Käyttäjätunnus: ${user.name}</h1>
 
         <p><a id="logout" href="${pageContext.request.contextPath}/app/logout">Kirjaudu ulos</a></p>
+
+        <p><a id="back" href="${pageContext.request.contextPath}/app/index">Takaisin leffahakuun</a></p>
 
         <h2>Katsotut leffat</h2>
 

@@ -30,12 +30,6 @@ public class UserController {
         userService.create("minä", "asd");
     }
 
-    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
-    public String listUsers(Model model) {
-        model.addAttribute("users", userService.list());
-        return "usermanagement";
-    }
-
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public String createUser(@RequestParam String name, @RequestParam String password, HttpSession session) {
         String id = userService.create(name, password).toString();
@@ -46,7 +40,8 @@ public class UserController {
     }
 
     @RequestMapping("{userId}")
-    public String viewUserPage(Model model, @PathVariable(value = "userId") Long userId, HttpSession session) {
+    public String viewUser(Model model,
+            @PathVariable(value = "userId") Long userId, HttpSession session) {
         String name = (String) session.getAttribute("name");
         String password = (String) session.getAttribute("password");
 
@@ -57,6 +52,12 @@ public class UserController {
         model.addAttribute("user", userService.findById(userId));
         model.addAttribute("movies", movieService.listMoviesWithout(userId));
         return "user";
+    }
+
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
+    public String listUsers(Model model) {
+        model.addAttribute("users", userService.list());
+        return "usermanagement";
     }
 
     @RequestMapping(value = "{userId}/delete", method = RequestMethod.POST)

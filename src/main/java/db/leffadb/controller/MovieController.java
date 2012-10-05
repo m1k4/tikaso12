@@ -41,9 +41,9 @@ public class MovieController {
     }
 
     @RequestMapping(value = "movies", method = RequestMethod.GET)
-    public String listAllMovies(Model model) {
-        model.addAttribute("movies", movieService.list());
-        return "movies";
+    public String listAllMovies(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("movies", movieService.list());
+        return "redirect:/app/index";
     }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
