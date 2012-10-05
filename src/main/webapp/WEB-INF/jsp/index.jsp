@@ -16,8 +16,10 @@
         <br>
 
         <c:if test="${not empty user}">
-            Kirjautuneena: ${user}
-            <p><a id="logout" href="${pageContext.request.contextPath}/app/logout">Kirjaudu ulos</a></p>
+            <fieldset>
+                Kirjautuneena: <a href="${pageContext.request.contextPath}/app/users/${user.id}">${user.name}</a>
+                <p><a id="logout" href="${pageContext.request.contextPath}/app/logout">Kirjaudu ulos</a></p>
+            </fieldset>
         </c:if>
 
         <c:if test="${empty user}">
@@ -41,7 +43,7 @@
 
         <fieldset>
             <legend>Leffahaku</legend>
-            <form action="movie/find" method="GET">
+            <form action="movies/find" method="GET">
                 <label for="hakusana">Hakusana:</label>
                 <input type="text" name="hakusana" id="hakusana"/>
                 <input type="submit" value="Hae" />
@@ -56,14 +58,14 @@
             <c:if test="${not empty movies}">
                 <div>
                     <c:forEach var="movie" items="${movies}">
-                        <li><a href="${pageContext.request.contextPath}/app/movie/${movie.id}">${movie.name}</a>
+                        <li><a href="${pageContext.request.contextPath}/app/movies/${movie.id}">${movie.name}</a>
                         </c:forEach>
                 </div>
             </c:if>
 
             <br>
 
-            <form action="movie/movies" method="GET">
+            <form action="movies/leffat" method="GET">
                 <input type="submit" value="Kaikki leffat" />
             </form>
         </fieldset>

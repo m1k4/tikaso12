@@ -16,9 +16,9 @@
         <h1>Leffa: ${movie.name}</h1>
 
         <p><a id="logout" href="${pageContext.request.contextPath}/app/logout">Kirjaudu ulos</a></p>
-        <p><a id="back" href="${pageContext.request.contextPath}/app/movie">Takaisin</a></p>
+        <p><a id="back" href="${pageContext.request.contextPath}/app/movies">Takaisin</a></p>
 
-        <form action="${pageContext.request.contextPath}/app/movie/${movie.id}/update" method="POST">
+        <form action="${pageContext.request.contextPath}/app/movies/${movie.id}/update" method="POST">
             <fieldset>
                 <legend>Leffan tietojen muokkaus</legend>
                 <label for="name">Leffan nimi:</label>

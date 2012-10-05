@@ -14,8 +14,8 @@
         <br>
         <fieldset>
             <legend>Ylläpitotoimet</legend>
-            <a href="${pageContext.request.contextPath}/app/user/">Käyttäjien hallinta</a><br/>
-            <a href="${pageContext.request.contextPath}/app/movie/">Leffojen hallinta</a><br/>
+            <a href="${pageContext.request.contextPath}/app/users/">Käyttäjien hallinta</a><br/>
+            <a href="${pageContext.request.contextPath}/app/movies/">Leffojen hallinta</a><br/>
         </fieldset>
     </body>
 </html>

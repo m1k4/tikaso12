@@ -22,7 +22,7 @@
 
         <div>
             Anna tarvittavat tiedot ja paina lähetä: 
-                <form action="${pageContext.request.contextPath}/app/user/" method="POST">
+                <form action="${pageContext.request.contextPath}/app/users/" method="POST">
                     Käyttäjätunnus: <input type="text" name="name" id="name"/><br/>
                     Salasana: <input type="password" name="password" id="password"/><br/>
                     <input type="submit" value="Lähetä"/>

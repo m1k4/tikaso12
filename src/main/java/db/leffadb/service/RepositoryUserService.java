@@ -54,7 +54,7 @@ public class RepositoryUserService implements UserService {
     }
 
     @Override
-        @Transactional(readOnly = false)
+    @Transactional(readOnly = false)
     public void adduserToMovie(Long userId, Long movieId) {
         User user = userRepository.findOne(userId);
         Movie movie = movieRepository.findOne(movieId);
@@ -64,7 +64,7 @@ public class RepositoryUserService implements UserService {
     }
 
     @Override
-        @Transactional(readOnly = false)
+    @Transactional(readOnly = false)
     public void removeUserFromMovie(Long userId, Long movieId) {
         User user = userRepository.findOne(userId);
         Movie movie = movieRepository.findOne(movieId);
@@ -100,5 +100,4 @@ public class RepositoryUserService implements UserService {
         }
         return false;
     }
-
 }

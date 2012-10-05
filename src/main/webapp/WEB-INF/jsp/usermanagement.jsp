@@ -18,13 +18,13 @@
         <ol>
             <c:forEach var="user" items="${users}">
                 <li><a>${user.name}</a>
-                    <form method="POST" action="${pageContext.request.contextPath}/app/user/${user.id}/delete">
+                    <form method="POST" action="${pageContext.request.contextPath}/app/users/${user.id}/delete">
                         <input type="submit" value="Poista" id="remove-${user.id}"/>
                     </form><br/>
                 </li>
             </c:forEach>
         </ol>
 
-        <div><a href="${pageContext.request.contextPath}/app/movie/">Leffojen hallinta</a></div>
+        <div><a href="${pageContext.request.contextPath}/app/movies/">Leffojen hallinta</a></div>
     </body>
 </html>

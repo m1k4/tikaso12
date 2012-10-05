@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,9 +31,19 @@ public class User implements Serializable {
     private String password;
     @ManyToMany(mappedBy = "users")
     private List<Movie> movies;
+    @OneToMany(mappedBy="user")
+    private List<Rating> ratings;
 
     public Long getId() {
         return id;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 
     public void setId(Long id) {

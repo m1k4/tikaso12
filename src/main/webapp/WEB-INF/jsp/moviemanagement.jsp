@@ -17,7 +17,7 @@
 
         <div>
             Anna leffan nimi ja paina lisää:<br/>
-            <form action="${pageContext.request.contextPath}/app/movie/" method="POST">
+            <form action="${pageContext.request.contextPath}/app/movies/" method="POST">
                 Name: <input type="text" name="name" id="name"/><br/>
                 <input type="submit" value="Lisää"/>            
             </form>
@@ -27,14 +27,14 @@
 
         <ol>
             <c:forEach var="movie" items="${movies}">
-                <li>${movie.name} <a href="${pageContext.request.contextPath}/app/movie/${movie.id}/muokkaa">[Muokkaa]</a>
-                    <form method="POST" action="${pageContext.request.contextPath}/app/movie/${movie.id}/delete">
+                <li>${movie.name} <a href="${pageContext.request.contextPath}/app/movies/${movie.id}/update">[Muokkaa]</a>
+                    <form method="POST" action="${pageContext.request.contextPath}/app/movies/${movie.id}/delete">
                         <input type="submit" value="Poista" id="remove-${movie.id}"/>
                     </form><br/>
                 </li>
             </c:forEach>
         </ol>
 
-        <div><a href="${pageContext.request.contextPath}/app/user/">Käyttäjien hallinta</a></div>
+        <div><a href="${pageContext.request.contextPath}/app/users/">Käyttäjien hallinta</a></div>
     </body>
 </html>

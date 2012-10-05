@@ -4,6 +4,7 @@
  */
 package db.leffadb.controller;
 
+import db.leffadb.domain.User;
 import db.leffadb.service.MovieService;
 import db.leffadb.service.UserService;
 import javax.annotation.PostConstruct;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("users")
 public class UserController {
 
     @Autowired
@@ -31,19 +32,21 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
-    public String createUser(@RequestParam String name, @RequestParam String password, HttpSession session) {
+    public String createUser(@RequestParam String name,
+            @RequestParam String password, HttpSession session) {
         String id = userService.create(name, password).toString();
         session.setAttribute("name", name);
         session.setAttribute("password", password);
 
-        return "redirect:/app/user/" + id + "";
+        return "redirect:/app/users/" + id + "";
     }
 
     @RequestMapping("{userId}")
     public String viewUser(Model model,
             @PathVariable(value = "userId") Long userId, HttpSession session) {
-        String name = (String) session.getAttribute("name");
-        String password = (String) session.getAttribute("password");
+        User user = (User) session.getAttribute("user");
+        String name = user.getName();
+        String password = user.getPassword();
 
         if (!userService.checkLogin(name, password)) {
             return "redirect:/";
@@ -63,20 +66,20 @@ public class UserController {
     @RequestMapping(value = "{userId}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable(value = "userId") Long userId) {
         userService.delete(userId);
-        return "redirect:/app/user/";
+        return "redirect:/app/users/";
     }
 
     @RequestMapping(value = "{userId}/movie", method = RequestMethod.POST)
     public String adduserToMovie(@PathVariable(value = "userId") Long userId,
             @RequestParam(value = "movieId") Long movieId) {
         userService.adduserToMovie(userId, movieId);
-        return "redirect:/app/user/" + userId.toString();
+        return "redirect:/app/users/" + userId.toString();
     }
 
     @RequestMapping(value = "{userId}/deleteMovie/{movieId}", method = RequestMethod.POST)
     public String removeUserFromMovie(@PathVariable(value = "userId") Long userId,
             @PathVariable(value = "movieId") Long movieId) {
         userService.removeUserFromMovie(userId, movieId);
-        return "redirect:/app/user/" + userId.toString();
+        return "redirect:/app/users/" + userId.toString();
     }
 }

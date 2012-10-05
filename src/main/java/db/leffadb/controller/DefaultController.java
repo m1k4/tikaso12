@@ -1,5 +1,6 @@
 package db.leffadb.controller;
 
+import db.leffadb.domain.User;
 import db.leffadb.service.UserService;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class DefaultController {
     @RequestMapping("index")
     public String viewIndex(Model model, HttpSession session) {
         String name = (String) session.getAttribute("name");
-        model.addAttribute("user", name);
+        User user = userService.findByName(name);
+        model.addAttribute("user", user);
         return "index";
     }
 
@@ -39,9 +41,9 @@ public class DefaultController {
             HttpSession session) {
 
         if (userService.checkLogin(name, password)) {
-            session.setAttribute("name", name);
-            session.setAttribute("password", password);
-            return "redirect:/app/user/" + userService.findByName(name).getId().toString();
+            User user = userService.findByName(name);
+            session.setAttribute("user", user);
+            return "redirect:/app/users/" + user.getId().toString();
         }
 
         return "redirect:/";
