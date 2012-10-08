@@ -1,0 +1,61 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Leffa-arkisto</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body>
+        <h1>Leffa-arkisto</h1>
+
+        <p><a href="rekisteroityminen.html">Rekisteröidy</a></p>
+
+        <form action="kirjautuminen.html" method="POST">
+            <fieldset>
+                <legend>Kirjaudu sisään</legend>
+                <label for="tunnus">Käyttäjätunnus:</label>
+                <input type="text" name="tunnus" id="tunnus" />
+                <label for="salasana">Salasana:</label>
+                <input type="password" name="salasana" id="salasana" />
+                <input type="submit" value="Kirjaudu" />
+            </fieldset>
+        </form>
+
+        <p><a href="tietoja.html">Tietoja</a></p>
+
+        <form action="index.html" method="POST">
+            <fieldset>
+                <legend>Leffahaku</legend>
+                <label>Hakusana: <input type="text" name="hakusana" id="hakusana"></label> <br>
+                <label>Ohjaaja: <input type="text" name="ohjaaja" id="ohjaaja"></label> <br>
+                <label>Genre: <select>
+                        <option value="kauhu">kauhu</option>
+                        <option value="scifi">scifi</option>
+                        <option value="jännitys">jännitys</option>
+                        <option value="toiminta">toiminta</option>
+                        <option value="fantasia">fantasia</option>
+                    </select> </label> <br>
+                <label>Valmistumisvuosi: <input type="text" name="vuosi" id="vuosi"></label>
+                <input type="submit" value="Hae"/>
+            </fieldset>
+        </form>
+
+        <fieldset>
+            <legend>Hakutulokset</legend>
+            <ul>
+                <li>Täällä Pohjantähden alla <a href="leffa.html?id=123">[tietoja]</a></li>
+                <li>Tuntematon sotilas <a href="leffa.html?id=124">[tietoja]</a></li>
+                <li>Rukajärven tie <a href="leffa.html?tuote=125">[tietoja]</a></li>
+            </ul>
+            <form action="index.html" method="POST">
+                <input type="submit" value="Kaikki leffat"/>
+            </form>
+        </fieldset>
+
+
+    </body>
+</html>
