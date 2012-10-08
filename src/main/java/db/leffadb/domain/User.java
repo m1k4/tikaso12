@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.NotBlank;
@@ -19,7 +20,7 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  * @author m1k4
  */
-@Entity(name = "KAYTTAJA")
+@Entity(name = "USERS")
 public class User implements Serializable {
 
     @Id
@@ -33,8 +34,10 @@ public class User implements Serializable {
     @NotBlank
     private String password;
     @ManyToMany(mappedBy = "users")
+    @JoinColumn(name="MOVIES")
     private List<Movie> movies;
     @OneToMany(mappedBy = "user")
+    @JoinColumn(name="RATINGS")
     private List<Rating> ratings;
 
     public Long getId() {

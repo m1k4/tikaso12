@@ -11,13 +11,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 /**
  *
  * @author m1k4
  */
-@Entity(name = "MOVIE")
+@Entity(name = "MOVIES")
 public class Movie implements Serializable {
 
     @Id
@@ -35,6 +36,7 @@ public class Movie implements Serializable {
     @Column(name = "VUOSI")
     private int vuosi;
     @ManyToMany
+    @JoinColumn(name="USERS")
     private List<User> users;
 
     public Long getId() {

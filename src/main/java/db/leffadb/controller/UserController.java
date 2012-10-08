@@ -27,13 +27,13 @@ public class UserController {
     @Autowired
     private MovieService movieService;
 
-    @PostConstruct
-    private void init() {
-        User user = new User();
-        user.setName("minä");
-        user.setPassword("asd");
-        userService.create(user);
-    }
+//    @PostConstruct
+//    private void init() {
+//        User user = new User();
+//        user.setName("minä");
+//        user.setPassword("asd");
+//        userService.create(user);
+//    }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public String createUser(@ModelAttribute User user, HttpSession session) {

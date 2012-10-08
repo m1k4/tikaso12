@@ -35,21 +35,21 @@ public class MovieController {
     @Autowired
     private RatingService ratingService;
 
-    @PostConstruct
-    private void init() {
-        Movie movie1 = new Movie();
-        movie1.setName("Testi1");
-        movieService.create(movie1);
-
-        Movie movie2 = new Movie();
-        movie2.setName("Testi2");
-        movieService.create(movie2);
-
-        Movie movie3 = new Movie();
-        movie3.setName("Testi3");
-        movieService.create(movie3);
-
-    }
+//    @PostConstruct
+//    private void init() {
+//        Movie movie1 = new Movie();
+//        movie1.setName("Testi1");
+//        movieService.create(movie1);
+//
+//        Movie movie2 = new Movie();
+//        movie2.setName("Testi2");
+//        movieService.create(movie2);
+//
+//        Movie movie3 = new Movie();
+//        movie3.setName("Testi3");
+//        movieService.create(movie3);
+//
+//    }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String list(Model model) {

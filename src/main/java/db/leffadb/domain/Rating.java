@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,7 +23,7 @@ import javax.persistence.TemporalType;
  * @author m1k4
  */
 @Entity
-@Table(name = "Rating")
+@Table(name = "RATINGS")
 public class Rating {
 
     @Id
@@ -36,8 +37,10 @@ public class Rating {
     @NotNull
     private int rating;
     @OneToOne
+    @JoinColumn(name = "MOVIE")
     Movie movie;
     @ManyToOne
+    @JoinColumn(name = "USER")
     User user;
 
     public Long getId() {
@@ -79,5 +82,4 @@ public class Rating {
     public void setUser(User user) {
         this.user = user;
     }
-    
 }
