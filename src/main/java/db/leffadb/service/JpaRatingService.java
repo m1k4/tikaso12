@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author m1k4
  */
 @Service
-public class RepositoryRatingService implements RatingService {
+public class JpaRatingService implements RatingService {
 
     @Autowired
     private RatingRepository ratingRepository;
@@ -36,18 +36,6 @@ public class RepositoryRatingService implements RatingService {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public List<Rating> findByUser(User user) {
-        return ratingRepository.findByUser(user);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Rating findByUserAndMovie(User user, Movie movie) {
-        return ratingRepository.findByUserAndMovie(user, movie);
-    }
-
-    @Override
     @Transactional(readOnly = false)
     public void update(Rating rating) {
         ratingRepository.save(rating);
@@ -60,8 +48,26 @@ public class RepositoryRatingService implements RatingService {
     }
 
     @Override
+    @Transactional(readOnly = false)
+    public void delete(Long id) {
+        ratingRepository.delete(id);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Rating> findAll() {
         return ratingRepository.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Rating> findByUser(User user) {
+        return ratingRepository.findByUser(user);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Rating findByUserAndMovie(User user, Movie movie) {
+        return ratingRepository.findByUserAndMovie(user, movie);
     }
 }

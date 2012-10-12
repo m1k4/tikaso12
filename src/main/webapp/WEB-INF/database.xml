@@ -50,22 +50,11 @@
     </beans>
     
     <beans profile="dev,default">
-        <!-- ympäristöön liittyvä konfiguraatiotiedosto 
+        <!-- ympäristöön liittyvä konfiguraatiotiedosto --> 
         <context:property-placeholder location="classpath:properties/default.properties"/>
 
-         muistiin ladattava tietokanta 
+         <!-- muistiin ladattava tietokanta --> 
         <jdbc:embedded-database id="dataSource" type="H2"/> 
-        -->
-        	<!-- ympäristöön liittyvä konfiguraatiotiedosto -->
-        <context:property-placeholder location="classpath:properties/production.properties"/>
-
-	<!-- luodaan tietokantakonfiguraatio luetun konfiguraatiotiedoston perusteella -->
-        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-            <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="${database.url}"/>
-            <property name="username" value="${database.username}"/>
-            <property name="password" value="${database.password}"/>
-        </bean>
     </beans>
     
 </beans>

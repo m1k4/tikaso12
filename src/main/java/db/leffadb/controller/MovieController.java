@@ -9,8 +9,6 @@ import db.leffadb.domain.Rating;
 import db.leffadb.domain.User;
 import db.leffadb.service.MovieService;
 import db.leffadb.service.RatingService;
-import db.leffadb.service.UserService;
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,13 +51,13 @@ public class MovieController {
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("movies", movieService.list());
+        model.addAttribute("movies", movieService.findAll());
         return "moviemanagement";
     }
 
     @RequestMapping(value = "leffat", method = RequestMethod.GET)
     public String listAllMovies(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("movies", movieService.list());
+        redirectAttributes.addFlashAttribute("movies", movieService.findAll());
         return "redirect:/app/index";
     }
 

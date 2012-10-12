@@ -7,7 +7,6 @@ package db.leffadb.controller;
 import db.leffadb.domain.User;
 import db.leffadb.service.MovieService;
 import db.leffadb.service.UserService;
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,7 +58,7 @@ public class UserController {
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String listUsers(Model model) {
-        model.addAttribute("users", userService.list());
+        model.addAttribute("users", userService.findAll());
         return "usermanagement";
     }
 

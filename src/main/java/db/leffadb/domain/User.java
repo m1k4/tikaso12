@@ -33,9 +33,11 @@ public class User implements Serializable {
     @Column(name = "PASSWORD")
     @NotBlank
     private String password;
+    
     @ManyToMany(mappedBy = "users")
     @JoinColumn(name="MOVIES")
     private List<Movie> movies;
+    
     @OneToMany(mappedBy = "user")
     @JoinColumn(name="RATINGS")
     private List<Rating> ratings;

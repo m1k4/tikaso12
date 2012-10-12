@@ -13,13 +13,7 @@ import java.util.List;
  *
  * @author m1k4
  */
-public interface RatingService {
-    Rating create(Rating rating);
-    Rating findById(Long id);
+public interface RatingService extends ServiceInterface<Rating> {
     List<Rating> findByUser(User user);
     Rating findByUserAndMovie(User user, Movie movie);
-    void update(Rating rating);
-    void delete(Rating rating);
-    List<Rating> findAll();
-    
 }

@@ -12,11 +12,17 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <h2.version>1.3.168</h2.version>
         <spring.version>3.1.2.RELEASE</spring.version>
-
-        <jetty.port>8090</jetty.port>
+        <commons-dbcp.version>1.2.2</commons-dbcp.version>
         <jetty.maven.plugin.version>8.1.5.v20120716</jetty.maven.plugin.version>
-        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+        
+        <h2.version>1.3.168</h2.version>
+        
+        <eclipselink.version>2.4.0</eclipselink.version>
+        <eclipselink.jpa.version>2.0.0</eclipselink.jpa.version>
+        
+        <jetty.port>8090</jetty.port>
     </properties>
 
     <dependencies>

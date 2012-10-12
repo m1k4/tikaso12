@@ -8,6 +8,7 @@ import db.leffadb.domain.Movie;
 import db.leffadb.domain.User;
 import db.leffadb.repository.MovieRepository;
 import db.leffadb.repository.UserRepository;
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author m1k4
  */
 @Service
-public class RepositoryUserService implements UserService {
+public class JpaUserService implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,16 +26,22 @@ public class RepositoryUserService implements UserService {
     private MovieRepository movieRepository;
 
     @Override
-    @Transactional(readOnly = true)
-    public Iterable<User> list() {
-        return userRepository.findAll();
-    }
-
-    @Override
     @Transactional(readOnly = false)
     public User create(User user) {
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findById(Long userId) {
+        return userRepository.findOne(userId);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void update(User object) {
+        userRepository.save(object);
     }
 
     @Override
@@ -46,6 +53,19 @@ public class RepositoryUserService implements UserService {
         }
 
         userRepository.delete(userId);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void delete(User object) {
+        Long userId = object.getId();
+        delete(userId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
@@ -66,12 +86,6 @@ public class RepositoryUserService implements UserService {
 
         user.getMovies().remove(movie);
         movie.getUsers().remove(user);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public User findById(Long userId) {
-        return userRepository.findOne(userId);
     }
 
     @Override

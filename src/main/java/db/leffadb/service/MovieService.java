@@ -10,12 +10,9 @@ import db.leffadb.domain.Movie;
  *
  * @author m1k4
  */
-public interface MovieService {
-    Iterable<Movie> list();
+public interface MovieService extends ServiceInterface<Movie> {
+
     Iterable<Movie> findByName(String name);
-    void create(Movie movie);
-    void update(Movie movie);
-    Movie findById(Long id);
-    void delete(Long movieId);
+
     Iterable<Movie> listMoviesWithout(Long userId);
 }
