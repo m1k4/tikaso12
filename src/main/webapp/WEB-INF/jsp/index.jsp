@@ -9,6 +9,7 @@
         <title>Leffa-arkisto</title>
     </head>
     <body>
+        <div id="profile">${profile.name}</div>
 
         <h1>Leffa-arkisto</h1>   
 

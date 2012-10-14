@@ -1,5 +1,6 @@
 package db.leffadb.controller;
 
+import db.leffadb.domain.Profile;
 import db.leffadb.domain.User;
 import db.leffadb.service.UserService;
 import javax.servlet.http.HttpSession;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DefaultController {
 
     @Autowired
+    private Profile profile;
+    @Autowired
     private UserService userService;
 
     @RequestMapping("index")
     public String viewIndex(Model model, HttpSession session) {
+        session.setAttribute("profile", profile);
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
         return "index";
@@ -37,7 +41,7 @@ public class DefaultController {
     public String login(@RequestParam(value = "name", required = true) String name,
             @RequestParam(value = "password", required = true) String password,
             HttpSession session) {
-       
+
         User user = userService.findByNameAndPassword(name, password);
         if (user == null) {
             return "redirect:/";
