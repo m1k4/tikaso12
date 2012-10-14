@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,9 +19,9 @@
         <ol>
             <c:forEach var="user" items="${users}">
                 <li><a>${user.name}</a>
-                    <form method="POST" action="${pageContext.request.contextPath}/app/users/${user.id}/delete">
+                    <form:form method="DELETE" action="${pageContext.request.contextPath}/app/users/${user.id}">
                         <input type="submit" value="Poista" id="remove-${user.id}"/>
-                    </form><br/>
+                    </form:form><br/>
                 </li>
             </c:forEach>
         </ol>

@@ -18,6 +18,9 @@
     
     <jpa:repositories base-package="db.leffadb.repository" />
     
+    <!-- käytämme persistence.xml -tiedostossa olevaa persistenceUnit-konfiguraatiota, 
+    dataSource injektoidaan luotavaan entityManagerFactory-olioon, ja 
+    JPA-apin toteuttaja on EclipseLink -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="${persistence.unit}" /> 
         <property name="dataSource" ref="dataSource" />
@@ -26,21 +29,24 @@
         </property>
     </bean>
     
+    <!-- Hallinnoidaan transaktioita automaattisesti -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
+    <!-- Transaktioiden hallinta voidaan määritellä annotaatioilla -->
     <tx:annotation-driven transaction-manager="transactionManager" />
     
+    <!-- Muunnetaan tietokantaspesifit poikkeukset yleisemmiksi -->
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
    
-        <!-- tuotantoympäristön konfiguraatio -->
+    <!-- tuotantoympäristön konfiguraatio -->
     <beans profile="production">
-	<!-- ympäristöön liittyvä konfiguraatiotiedosto -->
+        <!-- ympäristöön liittyvä konfiguraatiotiedosto -->
         <context:property-placeholder location="classpath:properties/production.properties"/>
 
-	<!-- luodaan tietokantakonfiguraatio luetun konfiguraatiotiedoston perusteella -->
+        <!-- luodaan tietokantakonfiguraatio luetun konfiguraatiotiedoston perusteella -->
         <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
             <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
             <property name="url" value="${database.url}"/>
@@ -53,7 +59,7 @@
         <!-- ympäristöön liittyvä konfiguraatiotiedosto --> 
         <context:property-placeholder location="classpath:properties/default.properties"/>
 
-         <!-- muistiin ladattava tietokanta --> 
+        <!-- muistiin ladattava tietokanta --> 
         <jdbc:embedded-database id="dataSource" type="H2"/> 
     </beans>
     

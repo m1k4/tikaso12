@@ -64,8 +64,7 @@ public class UserController {
     }
 
     
-    // muuta DELETE:ksi
-    @RequestMapping(value = "{userId}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "{userId}", method = RequestMethod.DELETE)
     public String delete(@PathVariable(value = "userId") Long userId) {
         userService.delete(userId);
         return "redirect:/app/users/";
