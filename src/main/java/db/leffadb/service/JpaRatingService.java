@@ -4,6 +4,7 @@
  */
 package db.leffadb.service;
 
+import db.leffadb.domain.Entertainment;
 import db.leffadb.domain.Movie;
 import db.leffadb.domain.Rating;
 import db.leffadb.domain.User;
@@ -66,8 +67,7 @@ public class JpaRatingService implements RatingService {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Rating findByUserAndMovie(User user, Movie movie) {
-        return ratingRepository.findByUserAndMovie(user, movie);
+    public Rating findByUserAndEntertainment(User user, Entertainment entertainment) {
+        return ratingRepository.findByUserAndEntertainment(user, entertainment);
     }
 }

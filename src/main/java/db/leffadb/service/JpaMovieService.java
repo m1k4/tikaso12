@@ -4,11 +4,13 @@
  */
 package db.leffadb.service;
 
+import db.leffadb.domain.Entertainment;
 import db.leffadb.domain.User;
 import db.leffadb.domain.Movie;
 import db.leffadb.repository.UserRepository;
 import db.leffadb.repository.MovieRepository;
 import java.util.Collection;
+import java.util.List;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +37,7 @@ public class JpaMovieService implements MovieService {
     @Override
     @Transactional(readOnly = true)
     public Movie findById(Long id) {
-        return movieRepository.findOne(id);
+        return (Movie) movieRepository.findOne(id);
     }
 
     @Override
@@ -47,9 +49,9 @@ public class JpaMovieService implements MovieService {
     @Override
     @Transactional(readOnly = false)
     public void delete(Long movieId) {
-        Movie movie = movieRepository.findOne(movieId);
+        Movie movie = (Movie) movieRepository.findOne(movieId);
         for (User user : movie.getUsers()) {
-            user.getMovies().remove(movie);
+            user.getEntertainments().remove(movie);
         }
 
         movieRepository.delete(movie);
@@ -65,7 +67,7 @@ public class JpaMovieService implements MovieService {
     @Override
     @Transactional(readOnly = true)
     public Collection<Movie> findAll() {
-        return movieRepository.findAll();
+        return movieRepository.findByIdentifier("movie");
     }
 
     @Override

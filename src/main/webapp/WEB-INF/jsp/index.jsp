@@ -7,12 +7,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <title>Leffa-arkisto</title>
+        <title>Viihdearkisto</title>
     </head>
     <body>
         <div id="profile">${profile.name}</div>
 
-        <h1>Leffa-arkisto</h1>   
+        <h1>Viihdearkisto</h1>   
 
         <a href="yllapito">Ylläpito</a><br/>
         <br>
@@ -41,22 +41,10 @@
             </fieldset>
         </c:if>
 
-        <br>
+        <h2>Arkiston sisältö</h2>
 
         <fieldset>
-            <legend>Leffahaku</legend>
-            <form action="movies/find" method="GET">
-                <label for="hakusana">Hakusana:</label>
-                <input type="text" name="hakusana" id="hakusana"/>
-                <input type="submit" value="Hae" />
-            </form>
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-            <legend>Hakutulokset</legend>
-
+            <legend>Leffat</legend>
             <c:if test="${not empty movies}">
                 <div>
                     <c:forEach var="movie" items="${movies}">
@@ -64,13 +52,23 @@
                         </c:forEach>
                 </div>
             </c:if>
-
-            <br>
-
             <form action="movies/leffat" method="GET">
                 <input type="submit" value="Kaikki leffat" />
             </form>
         </fieldset>
 
+        <fieldset>
+            <legend>Pelit</legend>
+            <c:if test="${not empty games}">
+                <div>
+                    <c:forEach var="game" items="${games}">
+                        <li><a href="${pageContext.request.contextPath}/app/games/${game.id}">${game.name}</a>
+                        </c:forEach>
+                </div>
+            </c:if>
+            <form action="games/pelit" method="GET">
+                <input type="submit" value="Kaikki pelit" />
+            </form>
+        </fieldset>
     </body>
 </html>

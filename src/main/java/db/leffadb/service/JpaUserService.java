@@ -4,8 +4,10 @@
  */
 package db.leffadb.service;
 
+import db.leffadb.domain.Entertainment;
 import db.leffadb.domain.Movie;
 import db.leffadb.domain.User;
+import db.leffadb.repository.EntertainmentRepository;
 import db.leffadb.repository.MovieRepository;
 import db.leffadb.repository.UserRepository;
 import java.util.Collection;
@@ -23,7 +25,7 @@ public class JpaUserService implements UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private MovieRepository movieRepository;
+    private EntertainmentRepository entertainmentRepository;
 
     @Override
     @Transactional(readOnly = false)
@@ -48,8 +50,8 @@ public class JpaUserService implements UserService {
     @Transactional(readOnly = false)
     public void delete(Long userId) {
         User user = userRepository.findOne(userId);
-        for (Movie movie : user.getMovies()) {
-            movie.getUsers().remove(user);
+        for (Entertainment entertainment : user.getEntertainments()) {
+            entertainment.getUsers().remove(user);
         }
 
         userRepository.delete(userId);
@@ -70,22 +72,22 @@ public class JpaUserService implements UserService {
 
     @Override
     @Transactional(readOnly = false)
-    public void adduserToMovie(Long userId, Long movieId) {
+    public void adduserToEntertainment(Long userId, Long entertainmentId) {
         User user = userRepository.findOne(userId);
-        Movie movie = movieRepository.findOne(movieId);
+        Entertainment entertainment = entertainmentRepository.findOne(entertainmentId);
 
-        user.getMovies().add(movie);
-        movie.getUsers().add(user);
+        user.getEntertainments().add(entertainment);
+        entertainment.getUsers().add(user);
     }
 
     @Override
     @Transactional(readOnly = false)
-    public void removeUserFromMovie(Long userId, Long movieId) {
+    public void removeUserFromEntertainment(Long userId, Long entertainmentId) {
         User user = userRepository.findOne(userId);
-        Movie movie = movieRepository.findOne(movieId);
+        Entertainment entertainment = entertainmentRepository.findOne(entertainmentId);
 
-        user.getMovies().remove(movie);
-        movie.getUsers().remove(user);
+        user.getEntertainments().remove(entertainment);
+        entertainment.getUsers().remove(user);
     }
 
     @Override

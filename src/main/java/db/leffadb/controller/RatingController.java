@@ -39,7 +39,7 @@ public class RatingController {
         Movie movie = movieService.findById(movieId);
         User user = (User) session.getAttribute("user");
 
-        rating.setMovie(movie);
+        rating.setEntertainment(movie);
         rating.setTimestamp(new Date());
         rating.setUser(user);
         ratingService.create(rating);

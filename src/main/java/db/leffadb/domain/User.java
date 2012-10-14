@@ -5,6 +5,7 @@
 package db.leffadb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,15 +34,13 @@ public class User implements Serializable {
     @Column(name = "PASSWORD")
     @NotBlank
     private String password;
-    
     @ManyToMany(mappedBy = "users")
-    @JoinColumn(name="MOVIES")
-    private List<Movie> movies;
-    
+    @JoinColumn(name = "ENTERTAINMENTS")
+    private List<Entertainment> entertainments;
+
 //    @OneToMany(mappedBy = "user")
 //    @JoinColumn(name="RATINGS")
 //    private List<Rating> ratings;
-
     public Long getId() {
         return id;
     }
@@ -57,7 +56,6 @@ public class User implements Serializable {
 //    public void addRating(Rating rating) {
 //        ratings.add(rating);
 //    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -70,12 +68,32 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
+    public List<Entertainment> getEntertainments() {
+        return entertainments;
+    }
+
+    public void setEntertainments(List<Entertainment> entertainments) {
+        this.entertainments = entertainments;
+    }
+
+    public List<Entertainment> getMovies() {
+        List<Entertainment> movies = new ArrayList<Entertainment>();
+        for (Entertainment entertainment : entertainments) {
+            if (entertainment.getIdentifier().equals("movie")) {
+                movies.add(entertainment);
+            }
+        }
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public List<Entertainment> getGames() {
+        List<Entertainment> games = new ArrayList<Entertainment>();
+        for (Entertainment entertainment : entertainments) {
+            if (entertainment.getIdentifier().equals("game")) {
+                games.add(entertainment);
+            }
+        }
+        return games;
     }
 
     public String getPassword() {

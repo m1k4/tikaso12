@@ -14,7 +14,7 @@ public interface UserService extends ServiceInterface<User> {
 
     User findByNameAndPassword(String name, String password);
 
-    void adduserToMovie(Long userId, Long movieId);
+    void adduserToEntertainment(Long userId, Long entertainmentId);
 
-    void removeUserFromMovie(Long userId, Long movieId);
+    void removeUserFromEntertainment(Long userId, Long entertainmentId);
 }

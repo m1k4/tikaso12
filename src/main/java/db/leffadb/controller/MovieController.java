@@ -95,7 +95,7 @@ public class MovieController {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
 
-        Rating rating = ratingService.findByUserAndMovie(user, movie);
+        Rating rating = ratingService.findByUserAndEntertainment(user, movie);
         model.addAttribute("rating", rating);
 
         return "movie";
@@ -106,12 +106,5 @@ public class MovieController {
     public String delete(@PathVariable(value = "movieId") Long movieId) {
         movieService.delete(movieId);
         return "redirect:/app/movies/";
-    }
-
-    @RequestMapping(value = "find", method = RequestMethod.GET)
-    public String find(RedirectAttributes redirectAttributes,
-            @RequestParam String hakusana) {
-        redirectAttributes.addFlashAttribute("movies", movieService.findByName(hakusana));
-        return "redirect:/app/index";
     }
 }
