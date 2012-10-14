@@ -6,12 +6,17 @@ package db.leffadb.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 /**
  *
  * @author m1k4
  */
 @Entity(name="GAMES")
+@Table(name = "GAMES")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Game extends Entertainment {
     @Column(name="ALUSTA")
     private String alusta;

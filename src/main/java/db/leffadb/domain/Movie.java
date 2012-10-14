@@ -6,12 +6,17 @@ package db.leffadb.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 /**
  *
  * @author m1k4
  */
 @Entity(name = "MOVIES")
+@Table(name = "MOVIES")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Movie extends Entertainment {
 
     @Column(name = "LENGTH_IN_MINUTES")

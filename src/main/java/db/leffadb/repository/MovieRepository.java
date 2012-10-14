@@ -16,7 +16,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author m1k4
  */
-public interface MovieRepository extends EntertainmentRepository { 
+public interface MovieRepository extends JpaRepository<Movie, Long> { 
     @Query("SELECT movie FROM MOVIES movie WHERE :user NOT MEMBER OF movie.users")
     List<Movie> findMoviesWithoutUser(@Param("user") User user);
     
