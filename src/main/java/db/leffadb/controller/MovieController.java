@@ -9,6 +9,7 @@ import db.leffadb.domain.Rating;
 import db.leffadb.domain.User;
 import db.leffadb.service.MovieService;
 import db.leffadb.service.RatingService;
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,6 +74,8 @@ public class MovieController {
         return "leffanmuokkaus";
     }
 
+    
+    // katso voiko muuttaa PUT:iksi
     @RequestMapping(value = "{movieId}/update", method = RequestMethod.POST)
     public String update(@PathVariable(value = "movieId") Long movieId,
             @ModelAttribute Movie movie) {
@@ -83,7 +86,7 @@ public class MovieController {
         return "redirect:/app/movies/";
     }
 
-    @RequestMapping("{movieId}")
+    @RequestMapping(value = "{movieId}", method = RequestMethod.GET)
     public String viewMoviePage(Model model,
             @PathVariable(value = "movieId") Long movieId,
             HttpSession session) {
@@ -99,6 +102,8 @@ public class MovieController {
         return "movie";
     }
 
+    
+    // muuta DELETE:ksi
     @RequestMapping(value = "{movieId}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable(value = "movieId") Long movieId) {
         movieService.delete(movieId);

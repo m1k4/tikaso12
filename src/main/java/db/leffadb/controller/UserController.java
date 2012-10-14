@@ -7,6 +7,7 @@ package db.leffadb.controller;
 import db.leffadb.domain.User;
 import db.leffadb.service.MovieService;
 import db.leffadb.service.UserService;
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,7 @@ public class UserController {
         return "redirect:/app/users/" + user.getId();
     }
 
-    @RequestMapping("{userId}")
+    @RequestMapping(value = "{userId}", method = RequestMethod.GET)
     public String viewUser(Model model,
             @PathVariable(value = "userId") Long userId, HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -62,6 +63,8 @@ public class UserController {
         return "usermanagement";
     }
 
+    
+    // muuta DELETE:ksi
     @RequestMapping(value = "{userId}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable(value = "userId") Long userId) {
         userService.delete(userId);

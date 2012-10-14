@@ -46,6 +46,8 @@ public class RatingController {
         return "redirect:/app/movies/" + movieId;
     }
 
+    
+    // muuta DELETE:ksi
     @RequestMapping(value = "movies/{movieId}/ratings/{ratingId}", method = RequestMethod.GET)
     public String delete(@PathVariable(value = "ratingId") Long ratingId,
             @PathVariable(value = "movieId") Long movieId) {

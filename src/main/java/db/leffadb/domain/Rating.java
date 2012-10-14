@@ -36,7 +36,7 @@ public class Rating {
     @Column(name = "rating", nullable = false)
     @NotNull
     private int rating;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "MOVIE")
     Movie movie;
     @ManyToOne

@@ -38,25 +38,25 @@ public class User implements Serializable {
     @JoinColumn(name="MOVIES")
     private List<Movie> movies;
     
-    @OneToMany(mappedBy = "user")
-    @JoinColumn(name="RATINGS")
-    private List<Rating> ratings;
+//    @OneToMany(mappedBy = "user")
+//    @JoinColumn(name="RATINGS")
+//    private List<Rating> ratings;
 
     public Long getId() {
         return id;
     }
 
-    public List<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
-    }
-    
-    public void addRating(Rating rating) {
-        ratings.add(rating);
-    }
+//    public List<Rating> getRatings() {
+//        return ratings;
+//    }
+//
+//    public void setRatings(List<Rating> ratings) {
+//        this.ratings = ratings;
+//    }
+//    
+//    public void addRating(Rating rating) {
+//        ratings.add(rating);
+//    }
 
     public void setId(Long id) {
         this.id = id;
