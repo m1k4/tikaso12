@@ -102,8 +102,7 @@ public class MovieController {
     }
 
     
-    // muuta DELETE:ksi
-    @RequestMapping(value = "{movieId}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "{movieId}", method = RequestMethod.DELETE)
     public String delete(@PathVariable(value = "movieId") Long movieId) {
         movieService.delete(movieId);
         return "redirect:/app/movies/";

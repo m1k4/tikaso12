@@ -29,9 +29,9 @@
         <ol>
             <c:forEach var="movie" items="${movies}">
                 <li>${movie.name} <a href="${pageContext.request.contextPath}/app/movies/${movie.id}/update">[Muokkaa]</a>
-                    <form method="POST" action="${pageContext.request.contextPath}/app/movies/${movie.id}/delete">
+                    <form:form method="DELETE" action="${pageContext.request.contextPath}/app/movies/${movie.id}">
                         <input type="submit" value="Poista" id="remove-${movie.id}"/>
-                    </form><br/>
+                    </form:form><br/>
                 </li>
             </c:forEach>
         </ol>
