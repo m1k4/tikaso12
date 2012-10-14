@@ -43,6 +43,7 @@ public class UserController {
         return "redirect:/app/users/" + user.getId();
     }
 
+    // ei toimi kuten aattelit
     @RequestMapping(value = "{userId}", method = RequestMethod.GET)
     public String viewUser(Model model,
             @PathVariable(value = "userId") Long userId, HttpSession session) {
@@ -70,9 +71,9 @@ public class UserController {
         return "redirect:/app/users/";
     }
 
-    @RequestMapping(value = "{userId}/movies", method = RequestMethod.POST)
+    @RequestMapping(value = "{userId}/movies/{movieId}", method = RequestMethod.POST)
     public String adduserToMovie(@PathVariable(value = "userId") Long userId,
-            @RequestParam(value = "movieId") Long movieId) {
+            @PathVariable(value = "movieId") Long movieId) {
         userService.adduserToMovie(userId, movieId);
         return "redirect:/app/users/" + userId;
     }

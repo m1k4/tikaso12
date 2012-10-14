@@ -32,14 +32,14 @@
             <h3>Lisää katsottu</h3>
 
             <div>
-                <form method="POST" action="${pageContext.request.contextPath}/app/users/${user.id}/movies">
-                    <select name="movieId">
-                        <c:forEach var="movie" items="${movies}">
-                            <option value="${movie.id}">${movie.name}</option>
+                <ul>
+                    <c:forEach var="movie" items="${movies}">
+                        <li><a href="${pageContext.request.contextPath}/app/movies/${movie.id}">${movie.name}</a>
+                            <form method="POST" action="${pageContext.request.contextPath}/app/users/${user.id}/movies/${movie.id}">
+                                <input type="submit" value="Lisää" id="add-to-movie"/>
+                            </form>
                         </c:forEach>
-                    </select>
-                    <input type="submit" value="Lisää" id="add-to-movie"/>
-                </form>
+                </ul>
             </div>
         </c:if>
     </body>
