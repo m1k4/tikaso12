@@ -21,9 +21,9 @@
             <ul>
                 <c:forEach var="movie" items="${user.movies}">
                     <li><a href="${pageContext.request.contextPath}/app/movies/${movie.id}">${movie.name}</a>
-                        <form method="POST" action="${pageContext.request.contextPath}/app/users/${user.id}/deleteMovie/${movie.id}">
+                        <form:form method="DELETE" action="${pageContext.request.contextPath}/app/users/${user.id}/movies/${movie.id}">
                             <input type="submit" value="Poista" id="remove-${movie.id}"/>
-                        </form><br/>
+                        </form:form><br/>
                     </c:forEach>
             </ul>
         </div>
@@ -32,7 +32,7 @@
             <h3>Lisää katsottu</h3>
 
             <div>
-                <form method="POST" action="${pageContext.request.contextPath}/app/users/${user.id}/movie">
+                <form method="POST" action="${pageContext.request.contextPath}/app/users/${user.id}/movies">
                     <select name="movieId">
                         <c:forEach var="movie" items="${movies}">
                             <option value="${movie.id}">${movie.name}</option>

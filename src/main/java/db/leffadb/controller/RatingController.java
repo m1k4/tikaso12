@@ -47,8 +47,7 @@ public class RatingController {
     }
 
     
-    // muuta DELETE:ksi
-    @RequestMapping(value = "movies/{movieId}/ratings/{ratingId}", method = RequestMethod.GET)
+    @RequestMapping(value = "movies/{movieId}/ratings/{ratingId}", method = RequestMethod.DELETE)
     public String delete(@PathVariable(value = "ratingId") Long ratingId,
             @PathVariable(value = "movieId") Long movieId) {
 

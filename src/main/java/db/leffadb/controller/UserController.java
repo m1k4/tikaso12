@@ -27,13 +27,13 @@ public class UserController {
     @Autowired
     private MovieService movieService;
 
-//    @PostConstruct
-//    private void init() {
-//        User user = new User();
-//        user.setName("minä");
-//        user.setPassword("asd");
-//        userService.create(user);
-//    }
+    @PostConstruct
+    private void init() {
+        User user = new User();
+        user.setName("minä");
+        user.setPassword("asd");
+        userService.create(user);
+    }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public String createUser(@ModelAttribute User user, HttpSession session) {
@@ -70,14 +70,14 @@ public class UserController {
         return "redirect:/app/users/";
     }
 
-    @RequestMapping(value = "{userId}/movie", method = RequestMethod.POST)
+    @RequestMapping(value = "{userId}/movies", method = RequestMethod.POST)
     public String adduserToMovie(@PathVariable(value = "userId") Long userId,
             @RequestParam(value = "movieId") Long movieId) {
         userService.adduserToMovie(userId, movieId);
         return "redirect:/app/users/" + userId;
     }
 
-    @RequestMapping(value = "{userId}/deleteMovie/{movieId}", method = RequestMethod.POST)
+    @RequestMapping(value = "{userId}/movies/{movieId}", method = RequestMethod.DELETE)
     public String removeUserFromMovie(@PathVariable(value = "userId") Long userId,
             @PathVariable(value = "movieId") Long movieId) {
         userService.removeUserFromMovie(userId, movieId);

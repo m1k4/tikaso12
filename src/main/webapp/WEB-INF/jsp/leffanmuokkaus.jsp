@@ -19,7 +19,7 @@
         <p><a id="logout" href="${pageContext.request.contextPath}/app/logout">Kirjaudu ulos</a></p>
         <p><a id="back" href="${pageContext.request.contextPath}/app/movies">Takaisin</a></p>
 
-        <form action="${pageContext.request.contextPath}/app/movies/${movie.id}/update" method="POST">
+        <form:form action="${pageContext.request.contextPath}/app/movies/${movie.id}" method="PUT">
             <fieldset>
                 <legend>Leffan tietojen muokkaus</legend>
                 <label for="name">Leffan nimi:</label>
@@ -35,6 +35,6 @@
                 <br>
                 <input type="submit" value="Tallenna leffan muutokset" />
             </fieldset>
-        </form>
+        </form:form>
     </body>
 </html>
