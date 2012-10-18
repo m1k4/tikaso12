@@ -4,9 +4,11 @@
  */
 package db.leffadb.controller;
 
+import db.leffadb.domain.Entertainment;
 import db.leffadb.domain.Movie;
 import db.leffadb.domain.Rating;
 import db.leffadb.domain.User;
+import db.leffadb.service.EntertainmentService;
 import db.leffadb.service.MovieService;
 import db.leffadb.service.RatingService;
 import java.util.Date;
@@ -31,20 +33,20 @@ public class RatingController {
     @Autowired
     private RatingService ratingService;
     @Autowired
-    private MovieService movieService;
+    private EntertainmentService entertainmentService;
 
     @RequestMapping(method = RequestMethod.POST, value = "movies/{movieId}/ratings")
     private String postRating(@ModelAttribute Rating rating,
-            @PathVariable Long movieId, HttpSession session) {
-        Movie movie = movieService.findById(movieId);
+            @PathVariable(value = "movieId") Long entertainmentId, HttpSession session) {
+        Entertainment entertainment = entertainmentService.findById(entertainmentId);
         User user = (User) session.getAttribute("user");
 
-        rating.setEntertainment(movie);
+        rating.setEntertainment(entertainment);
         rating.setTimestamp(new Date());
         rating.setUser(user);
         user.getRatings().add(rating);
         ratingService.create(rating);
-        return "redirect:/app/movies/" + movieId;
+        return "redirect:/app/movies/" + entertainmentId;
     }
 
     
