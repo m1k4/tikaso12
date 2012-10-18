@@ -48,7 +48,7 @@ public class DefaultController {
         }
 
         session.setAttribute("user", user);
-        return "redirect:/app/users/" + user.getId().toString();
+        return "redirect:/app/users/" + user.getId();
 
     }
 

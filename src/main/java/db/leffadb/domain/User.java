@@ -7,6 +7,7 @@ package db.leffadb.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,25 +38,14 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "users")
     @JoinColumn(name = "ENTERTAINMENTS")
     private List<Entertainment> entertainments;
+    @OneToMany(orphanRemoval = true)
+    @JoinColumn(name = "RATINGS")
+    private List<Rating> ratings;
 
-//    @OneToMany(mappedBy = "user")
-//    @JoinColumn(name="RATINGS")
-//    private List<Rating> ratings;
     public Long getId() {
         return id;
     }
 
-//    public List<Rating> getRatings() {
-//        return ratings;
-//    }
-//
-//    public void setRatings(List<Rating> ratings) {
-//        this.ratings = ratings;
-//    }
-//    
-//    public void addRating(Rating rating) {
-//        ratings.add(rating);
-//    }
     public void setId(Long id) {
         this.id = id;
     }
@@ -66,6 +56,14 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Entertainment> getEntertainments() {
@@ -96,11 +94,11 @@ public class User implements Serializable {
         return games;
     }
 
-    public String getPassword() {
-        return password;
+    public List<Rating> getRatings() {
+        return ratings;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

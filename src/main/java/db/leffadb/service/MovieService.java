@@ -14,5 +14,5 @@ public interface MovieService extends ServiceInterface<Movie> {
 
     Iterable<Movie> findByName(String name);
 
-    Iterable<Movie> listMoviesWithout(Long userId);
+    Iterable<Movie> listMoviesWithoutUser(Long userId);
 }

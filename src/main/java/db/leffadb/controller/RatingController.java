@@ -42,6 +42,7 @@ public class RatingController {
         rating.setEntertainment(movie);
         rating.setTimestamp(new Date());
         rating.setUser(user);
+        user.getRatings().add(rating);
         ratingService.create(rating);
         return "redirect:/app/movies/" + movieId;
     }

@@ -14,8 +14,7 @@ import javax.persistence.Table;
  *
  * @author m1k4
  */
-@Entity(name="GAMES")
-@Table(name = "GAMES")
+@Entity(name= "GAMES")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Game extends Entertainment {
     @Column(name="ALUSTA")

@@ -9,6 +9,7 @@ import db.leffadb.domain.User;
 import db.leffadb.repository.GameRepository;
 import db.leffadb.repository.UserRepository;
 import java.util.Collection;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,30 +18,18 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author m1k4
  */
-@Service
-public class JpaGameService implements GameService {
+@Service("gameService")
+public class JpaGameService extends RepositoryService<Game> 
+implements GameService {
 
     @Autowired
     private GameRepository gameRepository;
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    @Transactional(readOnly = false)
-    public Game create(Game object) {
-        return gameRepository.save(object);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Game findById(Long id) {
-        return (Game) gameRepository.findOne(id);
-    }
-
-    @Override
-    @Transactional(readOnly = false)
-    public void update(Game object) {
-        gameRepository.save(object);
+        @PostConstruct
+    private void init() {
+        setRepository(gameRepository);
     }
 
     @Override
@@ -62,13 +51,7 @@ public class JpaGameService implements GameService {
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<Game> findAll() {
-        return gameRepository.findByIdentifier("game");
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Iterable<Game> listGamesWithout(Long userId) {
+    public Iterable<Game> listGamesWithoutUser(Long userId) {
         User user = userRepository.findOne(userId);
         return gameRepository.findGamesWithoutUser(user);
     }

@@ -15,7 +15,6 @@ import javax.persistence.Table;
  * @author m1k4
  */
 @Entity(name = "MOVIES")
-@Table(name = "MOVIES")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Movie extends Entertainment {
 

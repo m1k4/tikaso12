@@ -4,12 +4,12 @@
  */
 package db.leffadb.service;
 
-import db.leffadb.domain.Game;
+import db.leffadb.domain.Entertainment;
 
 /**
  *
  * @author m1k4
  */
-public interface GameService extends ServiceInterface<Game> {
-    Iterable<Game> listGamesWithoutUser(Long userId);
+public interface EntertainmentService extends ServiceInterface<Entertainment> {
+    
 }

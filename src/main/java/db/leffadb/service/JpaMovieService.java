@@ -11,6 +11,7 @@ import db.leffadb.repository.UserRepository;
 import db.leffadb.repository.MovieRepository;
 import java.util.Collection;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,30 +21,18 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author m1k4
  */
-@Service
-public class JpaMovieService implements MovieService {
+@Service("movieService")
+public class JpaMovieService extends RepositoryService<Movie>
+        implements MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    @Transactional(readOnly = false)
-    public Movie create(Movie object) {
-        return movieRepository.save(object);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Movie findById(Long id) {
-        return (Movie) movieRepository.findOne(id);
-    }
-
-    @Override
-    @Transactional(readOnly = false)
-    public void update(Movie movie) {
-        movieRepository.save(movie);
+    @PostConstruct
+    private void init() {
+        setRepository(movieRepository);
     }
 
     @Override
@@ -66,13 +55,7 @@ public class JpaMovieService implements MovieService {
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<Movie> findAll() {
-        return movieRepository.findByIdentifier("movie");
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Iterable<Movie> listMoviesWithout(Long userId) {
+    public Iterable<Movie> listMoviesWithoutUser(Long userId) {
         User user = userRepository.findOne(userId);
         return movieRepository.findMoviesWithoutUser(user);
     }

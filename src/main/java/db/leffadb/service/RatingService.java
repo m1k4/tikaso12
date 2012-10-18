@@ -17,4 +17,5 @@ import java.util.List;
 public interface RatingService extends ServiceInterface<Rating> {
     List<Rating> findByUser(User user);
     Rating findByUserAndEntertainment(User user, Entertainment entertainment);
+    void deleteByEntertainmentId(Long id);
 }

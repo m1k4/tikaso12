@@ -7,6 +7,7 @@ package db.leffadb.controller;
 import db.leffadb.domain.User;
 import db.leffadb.service.GameService;
 import db.leffadb.service.MovieService;
+import db.leffadb.service.RatingService;
 import db.leffadb.service.UserService;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
@@ -30,13 +31,13 @@ public class UserController {
     @Autowired
     private GameService gameService;
     
-//    @PostConstruct
-//    private void init() {
-//        User user = new User();
-//        user.setName("minä");
-//        user.setPassword("asd");
-//        userService.create(user);
-//    }
+    @PostConstruct
+    private void init() {
+        User user = new User();
+        user.setName("minä");
+        user.setPassword("asd");
+        userService.create(user);
+    }
     
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public String createUser(@ModelAttribute User user, HttpSession session) {
@@ -46,19 +47,13 @@ public class UserController {
         return "redirect:/app/users/" + user.getId();
     }
 
-    // ei toimi kuten aattelit
     @RequestMapping(value = "{userId}", method = RequestMethod.GET)
     public String viewUser(Model model,
-            @PathVariable(value = "userId") Long userId, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        
-        if (!user.getId().equals(userId)) {
-            return "redirect:/";
-        }
+            @PathVariable(value = "userId") Long userId) {
         
         model.addAttribute("user", userService.findById(userId));
-        model.addAttribute("movies", movieService.listMoviesWithout(userId));
-        model.addAttribute("games", gameService.listGamesWithout(userId));
+        model.addAttribute("movies", movieService.listMoviesWithoutUser(userId));
+        model.addAttribute("games", gameService.listGamesWithoutUser(userId));
         return "user";
     }
     

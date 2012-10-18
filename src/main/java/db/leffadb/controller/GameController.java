@@ -29,21 +29,21 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-//    @PostConstruct
-//    private void init() {
-//        Game game1 = new Game();
-//        game1.setName("Peli1");
-//        gameService.create(game1);
-//
-//        Game game2 = new Game();
-//        game2.setName("Peli2");
-//        gameService.create(game2);
-//
-//        Game game3 = new Game();
-//        game3.setName("Peli3");
-//        gameService.create(game3);
-//
-//    }
+    @PostConstruct
+    private void init() {
+        Game game1 = new Game();
+        game1.setName("Peli1");
+        gameService.create(game1);
+
+        Game game2 = new Game();
+        game2.setName("Peli2");
+        gameService.create(game2);
+
+        Game game3 = new Game();
+        game3.setName("Peli3");
+        gameService.create(game3);
+
+    }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String list(Model model) {
