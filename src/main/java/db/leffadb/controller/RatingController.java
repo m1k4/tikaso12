@@ -4,9 +4,11 @@
  */
 package db.leffadb.controller;
 
+import db.leffadb.domain.Entertainment;
 import db.leffadb.domain.Movie;
 import db.leffadb.domain.Rating;
 import db.leffadb.domain.User;
+import db.leffadb.service.EntertainmentService;
 import db.leffadb.service.MovieService;
 import db.leffadb.service.RatingService;
 import java.util.Date;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -31,30 +34,32 @@ public class RatingController {
     @Autowired
     private RatingService ratingService;
     @Autowired
-    private MovieService movieService;
+    private EntertainmentService entertainmentService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "movies/{movieId}/ratings")
+    @RequestMapping(method = RequestMethod.POST, value = "entertainments/{Id}/ratings")
     private String postRating(@ModelAttribute Rating rating,
-            @PathVariable Long movieId, HttpSession session) {
-        Movie movie = movieService.findById(movieId);
+            @PathVariable(value = "Id") Long entertainmentId,
+            HttpSession session) {
+        Entertainment entertainment = entertainmentService.findById(entertainmentId);
         User user = (User) session.getAttribute("user");
 
-        rating.setEntertainment(movie);
+        rating.setEntertainment(entertainment);
         rating.setTimestamp(new Date());
         rating.setUser(user);
         user.getRatings().add(rating);
         ratingService.create(rating);
-        return "redirect:/app/movies/" + movieId;
+
+        return "redirect:/app/users/" + user.getId();
     }
 
-    
-    @RequestMapping(value = "movies/{movieId}/ratings/{ratingId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "entertainments/{Id}/ratings/{ratingId}", method = RequestMethod.DELETE)
     public String delete(@PathVariable(value = "ratingId") Long ratingId,
-            @PathVariable(value = "movieId") Long movieId) {
+            @PathVariable(value = "Id") Long entertainmentId, HttpSession session) {
 
         Rating rating = ratingService.findById(ratingId);
         ratingService.delete(rating);
 
-        return "redirect:/app/movies/"+ movieId;
+        User user = (User) session.getAttribute("user");
+        return "redirect:/app/users/" + user.getId();
     }
 }

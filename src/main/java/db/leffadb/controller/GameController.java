@@ -5,8 +5,10 @@
 package db.leffadb.controller;
 
 import db.leffadb.domain.Game;
+import db.leffadb.domain.Rating;
 import db.leffadb.domain.User;
 import db.leffadb.service.GameService;
+import db.leffadb.service.RatingService;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+    @Autowired
+    private RatingService ratingService;
 
     @PostConstruct
     private void init() {
@@ -88,6 +92,9 @@ public class GameController {
 
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
+
+        Rating rating = ratingService.findByUserAndEntertainment(user, game);
+        model.addAttribute("rating", rating);
 
         return "game";
     }

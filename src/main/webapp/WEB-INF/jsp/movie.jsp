@@ -31,13 +31,13 @@
             Kesto: ${movie.lengthInMinutes} <br>
             <c:if test="${not empty rating}">
                 Arvosana: ${rating.rating} 
-                <form:form action="${pageContext.request.contextPath}/app/movies/${movie.id}/ratings/${rating.id}" method="DELETE">
+                <form:form action="${pageContext.request.contextPath}/app/entertainments/${movie.id}/ratings/${rating.id}" method="DELETE">
                     <input type="submit" value="Poista arvosana"/>    
                 </form:form>
             </c:if>
 
             <c:if test="${empty rating and not empty user}">
-                <form action="${movie.id}/ratings" method="POST">
+                <form action="${pageContext.request.contextPath}/app/entertainments/${movie.id}/ratings" method="POST">
                     Arvosana: <select id="rating" name="rating">
                         <option value="1">1</option>
                         <option value="2">2</option>
