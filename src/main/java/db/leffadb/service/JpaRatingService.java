@@ -61,4 +61,14 @@ public class JpaRatingService extends RepositoryService<Rating> implements Ratin
             }
         }
     }
+
+//    @Override
+//    @Transactional(readOnly = false)
+//    public void deleteByUserId(Long id) {
+//        for (Rating rating : ratingRepository.findAll()) {
+//            if (rating.getUser().getId() == id) {
+//                ratingRepository.delete(rating);
+//            }
+//        }
+//    }
 }
